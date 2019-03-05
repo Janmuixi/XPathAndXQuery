@@ -1,0 +1,40 @@
+Ejercicio 1
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW[position()=last()-1]/APELLIDO/text()
+
+Ejercicio 2
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW[position()=3]
+
+Ejercicio 3
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/count(EMP_ROW[DEPT_NO=10])
+
+Ejercicio 4
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/sum(EMP_ROW[DEPT_NO=20]/SALARIO)
+
+Ejercicio 5
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/max(EMP_ROW[OFICIO='ANALISTA']/SALARIO)
+doc('db/nueva/empleados.xml')/EMPLEADOS/min(EMP_ROW[OFICIO='ANALISTA']/SALARIO)
+
+Ejercicio 6
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/avg(EMP_ROW[DEPT_NO=10]/SALARIO)
+
+Ejercicio 7
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW/concat(APELLIDO,OFICIO,SALARIO)
+
+Ejercicio 8
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW[starts-with(APELLIDO,'A')]
+
+Ejercicio 9
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW[contains(OFICIO,'OR')]
+
+Ejercicio 10
+
+doc('db/nueva/empleados.xml')/EMPLEADOS/EMP_ROW[string-length(APELLIDO) < 4]

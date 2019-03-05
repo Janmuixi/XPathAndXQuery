@@ -1,0 +1,114 @@
+Ejercicio 1
+
+xquery version "3.1";
+for $emp in /EMPLEADOS/EMP_ROW
+where (starts-with($emp/OFICIO,'P'))
+return <RESULT>{$emp/OFICIO/text()}</RESULT>
+
+Ejercicio 2
+
+xquery version "3.1";
+let $emps := /EMPLEADOS/EMP_ROW/OFICIO
+let $unique-emps := distinct-values($emps)
+return
+   <result>   
+   
+      <items>
+      {
+         for $emp in $unique-emps
+         return <item>{$emp}</item>
+      }
+      </items>
+      <counts>
+          {
+              for $emp in $unique-emps
+              return <count>{count(/EMPLEADOS/EMP_ROW[OFICIO=$emp])}</count>
+          }
+      </counts>
+   
+   </result>
+
+Ejercicio 3
+
+xquery version "3.1";
+let $deps := /departamentos/DEP_ROW/DEPT_NO
+let $unique-deps := distinct-values($deps)
+return
+   <result>   
+   
+      <items>
+      {
+         for $dep in $unique-deps
+         return <item>{concat($dep, "-", count(/EMPLEADOS/EMP_ROW[DEPT_NO = $dep]), "-", round(avg(/EMPLEADOS/EMP_ROW[DEPT_NO = $dep]/SALARIO)))}</item>
+      }
+      </items>
+      
+   
+   </result>
+
+Ejercicio 4
+
+xquery version "3.1";
+let $zonas := /zonas/zona/cod_zona
+let $unique-zonas := distinct-values($zonas)
+return
+   <result>   
+      <items>
+      {
+         for $zona in $unique-zonas
+         return <item>{concat($zona, " - ", count(/productos/produc[cod_zona = $zona]) )}</item>
+      }
+      </items>
+   </result>
+
+Ejercicio 5
+
+xquery version "3.1";
+let $products := /productos/produc
+return
+   <result>   
+      <items>
+      {
+         for $product in $products
+         return if($product/cod_zona = 10)
+         then <zona_10>{$product}</zona_10>
+         else if($product/cod_zona = 20)
+         then <zona_20>{$product}</zona_20>
+         else()
+      }
+      </items>
+   </result>
+
+Ejercicio 6
+
+xquery version "3.1";
+let $zonas := /zonas/zona/cod_zona
+let $unique-zonas := distinct-values($zonas)
+return
+   <result>   
+      <items>
+      {
+         for $zona in $unique-zonas
+         return <item>{/productos/produc[cod_zona=$zona and precio = max(precio)]}</item>
+      }
+      </items>
+   </result>
+
+Ejercicio 7
+
+xquery version "3.1";
+let $products := /productos/produc
+return
+   <result>   
+      <items>
+      {
+         for $product in $products
+         return if($product[starts-with(denominacion, 'Placa')])
+         then <placa>{$product/denominacion}</placa>
+         else if($product[starts-with(denominacion, 'Memoria')]) 
+         then <memoria>{$product/denominacion}</memoria>
+         else <other>{$product/denominacion}</other>
+         
+      }
+      </items>
+   </result>

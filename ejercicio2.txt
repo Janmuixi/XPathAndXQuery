@@ -1,0 +1,32 @@
+Ejercicio 1
+
+doc('db/nueva/productos.xml')/productos/produc/(denominacion|precio)
+
+Ejercicio 2
+
+doc('db/nueva/productos.xml')/productos/produc[contains(denominacion, 'Placa Base')]
+
+Ejercicio 3
+
+doc('db/nueva/productos.xml')/productos/produc[precio > 60 and cod_zona = 30]
+
+Ejercicio 4
+
+doc('db/nueva/productos.xml')/productos/count(produc[contains(denominacion, 'Memoria') and cod_zona = 10])
+
+Ejercicio 5
+
+doc('db/nueva/productos.xml')/productos/avg(produc[contains(denominacion, 'Micro')]/precio)
+
+Ejercicio 6
+
+doc('db/nueva/productos.xml')/productos/produc[number(stock_minimo) > number(stock_actual)]
+
+Ejercicio 7
+
+doc('db/nueva/productos.xml')/productos/produc[precio = max(precio)]
+
+Ejercicio 8
+
+doc('db/nueva/productos.xml')/productos/produc[cod_zona = 20 and precio = min(precio)]
+
