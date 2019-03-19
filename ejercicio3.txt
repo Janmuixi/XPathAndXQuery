@@ -35,15 +35,12 @@ let $deps := /departamentos/DEP_ROW/DEPT_NO
 let $unique-deps := distinct-values($deps)
 return
    <result>   
-   
       <items>
       {
          for $dep in $unique-deps
          return <item>{concat($dep, "-", count(/EMPLEADOS/EMP_ROW[DEPT_NO = $dep]), "-", round(avg(/EMPLEADOS/EMP_ROW[DEPT_NO = $dep]/SALARIO)))}</item>
       }
       </items>
-      
-   
    </result>
 
 Ejercicio 4
